@@ -1,5 +1,3 @@
-
-'''problema 8'''
 def isPrime(x):
     d = 2
     s = 0
@@ -12,11 +10,13 @@ def isPrime(x):
             d = d + 1
     return True
 
+
 def Sum(l):
     s = 0
     for i in range(len(l)):
         s = s + l[i]
     return s
+
 
 def get_longest_sum_is_prime(lst: list[int]) -> list[int]:
     max_length = 0
@@ -28,11 +28,12 @@ def get_longest_sum_is_prime(lst: list[int]) -> list[int]:
                 max_length = len(cl)
                 ret_l = cl
     return ret_l
-def test_get_longest_sum_is_prim():
-    assert get_longest_sum_is_prime([2, 3, 5, 4, 7, 2])==[2, 3, 5, 4, 7, 2]
-    assert get_longest_sum_is_prime([2, 3, 5, 4, 7, 2, 1])==[2, 3, 5, 4, 7, 2]
-    assert get_longest_sum_is_prime([2, 3, 5, 4, 7, 2, 1, 2])==[2, 3, 5, 4, 7, 2]
 
+
+def test_get_longest_sum_is_prim():
+    assert get_longest_sum_is_prime([2, 3, 5, 4, 7, 2]) == [2, 3, 5, 4, 7, 2]
+    assert get_longest_sum_is_prime([2, 3, 5, 4, 7, 2, 1]) == [2, 3, 5, 4, 7, 2]
+    assert get_longest_sum_is_prime([2, 3, 5, 4, 7, 2, 1, 2]) == [2, 3, 5, 4, 7, 2]
 
 
 '''problema 14'''
@@ -82,11 +83,41 @@ def test_get_longest_equal_int_real():
     assert get_longest_equal_int_real([1.1, 5.5, 23.2, 51.2, 16.0]) == [1.1, 5.5]
     assert get_longest_equal_int_real([28.3, 51.9, 63.4]) == []
 
+
+'''problema 9'''
+
+
+def produs(l):
+    s = 1
+    for i in range(len(l)):
+        s = s * l[i]
+    return s
+
+
+def get_longest_product_is_odd(lst: list[int]) -> list[int]:
+    max_length = 0
+    ret_l = []
+    for i in range(len(lst)):
+        for j in range(i, len(lst)):
+            cl = lst[i: j + 1]
+            if len(cl) > max_length and int(produs(cl) % 2) == 1:
+                max_length = len(cl)
+                ret_l = cl
+    return ret_l
+
+
+def test_get_longest_product_is_odd():
+    assert get_longest_product_is_odd([1, 3, 5]) == [1, 3, 5]
+    assert get_longest_product_is_odd([1, 3, 5, 6]) == [1, 3, 5]
+    assert get_longest_product_is_odd([1, 3, 4, 5, 6, 7]) == [1, 3]
+
+
 def printMenu():
     print("1. Citire lista ")
     print("2. Afisare subsecventa maxima ")
     print("3.Afisare subsecventa maxima care are suma un numar prim ")
-    print("4. Iesire")
+    print("4. Afisare subsecventa maxima care are produsul un numar impar ")
+    print("5. Iesire")
 
 
 def citireLista():
@@ -98,6 +129,7 @@ def citireLista():
 
 
 def main():
+    test_get_longest_product_is_odd()
     test_get_longest_sum_is_prim()
     test_get_longest_equal_int_real()
     test_int_equal_to_fractional()
@@ -113,10 +145,9 @@ def main():
         elif optiune == "3":
             print(get_longest_sum_is_prime(l))
         elif optiune == "4":
+            print(get_longest_product_is_odd(l))
+        elif optiune == "5":
             break
         else:
             print("Optiune gresita! Reincercati!")
-
-
-if __name__ == "__main__":
-    main()
+main()
