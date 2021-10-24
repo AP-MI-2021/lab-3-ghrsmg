@@ -1,4 +1,8 @@
+'''problema 8'''
 def isPrime(x):
+    '''
+    functia verifica daca numarul dat prin parametrul x este prim
+    '''
     d = 2
     s = 0
     if x < 2:
@@ -12,6 +16,9 @@ def isPrime(x):
 
 
 def Sum(l):
+    '''
+    calculeaza suma listei
+    '''
     s = 0
     for i in range(len(l)):
         s = s + l[i]
@@ -19,6 +26,9 @@ def Sum(l):
 
 
 def get_longest_sum_is_prime(lst: list[int]) -> list[int]:
+    '''
+    functia returneaza cu ajutorul a doua for-uri cea mai lunga subsecventa care are ca suma un numar prim
+    '''
     max_length = 0
     ret_l = []
     for i in range(len(lst)):
@@ -40,6 +50,9 @@ def test_get_longest_sum_is_prim():
 
 
 def int_equal_to_fractional(n: float) -> bool:
+    '''
+    verifica daca partea intreaga a unui numar este egala cu partea fractionara
+    '''
     x = str(n).split('.')
     return x[0] == x[1]
 
@@ -114,7 +127,7 @@ def test_get_longest_product_is_odd():
 
 def printMenu():
     print("1. Citire lista ")
-    print("2. Afisare subsecventa maxima ")
+    print("2. Afisare subsecventa care are partea intreaga egala cu partea fractionara")
     print("3.Afisare subsecventa maxima care are suma un numar prim ")
     print("4. Afisare subsecventa maxima care are produsul un numar impar ")
     print("5. Iesire")
@@ -124,7 +137,7 @@ def citireLista():
     l = []
     n = int(input("Dati numarul de elemente: "))
     for i in range(n):
-        l.append(int(input()))
+        l.append(input())
     return l
 
 
