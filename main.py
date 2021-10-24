@@ -1,4 +1,6 @@
 '''problema 8'''
+
+
 def isPrime(x):
     '''
     functia verifica daca numarul dat prin parametrul x este prim
@@ -54,7 +56,9 @@ def int_equal_to_fractional(n: float) -> bool:
     verifica daca partea intreaga a unui numar este egala cu partea fractionara
     '''
     x = str(n).split('.')
-    return x[0] == x[1]
+    if x[0] == x[1]:
+        return 1
+    else: return 0
 
 
 def test_int_equal_to_fractional():
@@ -66,7 +70,7 @@ def test_int_equal_to_fractional():
 
 def are_int_equal_to_fractional(lst: list[float]) -> bool:
     for x in lst:
-        if not int_equal_to_fractional(x):
+        if int_equal_to_fractional(x)== 0:
             return False
     return True
 
@@ -79,6 +83,10 @@ def test_are_int_equal_to_fractional():
 
 
 def get_longest_equal_int_real(lst: list[float]) -> list[float]:
+    '''
+    functia verifica cu ajutorul a doua for-uri daca subsecventa curenta are lungimea mai mare decat lmax
+    si daca toate elementele din cureent_subs au partea fractionara egala cu partea intreaga
+    '''
     subs_max = []
     lmax = 0
     for i in range(len(lst)):
@@ -108,6 +116,12 @@ def produs(l):
 
 
 def get_longest_product_is_odd(lst: list[int]) -> list[int]:
+    '''
+    functia trece cu ajutorul a doua for uri prin lista
+    verificand daca subsecventa curenta are ca produs al elementelor un numar impar
+    si daca lungimea listei curente(cl) este mai mare decat lungimea maxima
+    apoi daca indeplineste conditiile este salvata in ret_cl care este returnata
+    '''
     max_length = 0
     ret_l = []
     for i in range(len(lst)):
@@ -126,18 +140,25 @@ def test_get_longest_product_is_odd():
 
 
 def printMenu():
-    print("1. Citire lista ")
-    print("2. Afisare subsecventa care are partea intreaga egala cu partea fractionara")
-    print("3.Afisare subsecventa maxima care are suma un numar prim ")
-    print("4. Afisare subsecventa maxima care are produsul un numar impar ")
-    print("5. Iesire")
+    print("1. Citire lista int ")
+    print("2.Citire lista float")
+    print("3. Afisare subsecventa care are partea intreaga egala cu partea fractionara")
+    print("4.Afisare subsecventa maxima care are suma un numar prim ")
+    print("5. Afisare subsecventa maxima care are produsul un numar impar ")
+    print("6. Iesire")
 
 
-def citireLista():
+def citireListaint():
     l = []
     n = int(input("Dati numarul de elemente: "))
     for i in range(n):
-        l.append(input())
+        l.append(int(input()))
+    return l
+def citireListafloat():
+    l = []
+    n = int(input("Dati numarul de elemente: "))
+    for i in range(n):
+        l.append((input()))
     return l
 
 
@@ -152,14 +173,16 @@ def main():
         printMenu()
         optiune = input("Dati optiunea: ")
         if optiune == "1":
-            l = citireLista()
+            l = citireListaint()
         elif optiune == "2":
-            print(get_longest_equal_int_real(l))
+            l = citireListafloat()
         elif optiune == "3":
-            print(get_longest_sum_is_prime(l))
+            print(get_longest_equal_int_real(l))
         elif optiune == "4":
-            print(get_longest_product_is_odd(l))
+            print(get_longest_sum_is_prime(l))
         elif optiune == "5":
+            print(get_longest_product_is_odd(l))
+        elif optiune == "6":
             break
         else:
             print("Optiune gresita! Reincercati!")
